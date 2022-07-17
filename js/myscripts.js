@@ -47,7 +47,7 @@ function game(){
     let computerSelection;
 
     for (let index = 0; index < 5; index++) {
-        playerSelection = prompt();
+        playerSelection = prompt(`Round(${index+1}) Please enter rock, paper or scissors:`);
         computerSelection = computerPlay();
         scores[index] = playRound(playerSelection, computerSelection)
     }
