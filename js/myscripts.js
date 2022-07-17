@@ -69,3 +69,5 @@ function game(){
         return "It seems it is a stalemate.";
     }
 }
+
+game();
