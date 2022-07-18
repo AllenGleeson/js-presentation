@@ -1,5 +1,6 @@
+const posibilities = ["rock", "paper", "scissors"]
+
 function computerPlay(){
-    const posibilities = ["rock", "paper", "scissors"]
     random = Math.floor(Math.random() * posibilities.length)
     return posibilities[random];
 }
@@ -47,7 +48,9 @@ function game(){
     let computerSelection;
 
     for (let index = 0; index < 5; index++) {
-        playerSelection = prompt(`Round(${index+1}) Please enter rock, paper or scissors:`);
+        do {
+            playerSelection = prompt(`Round(${index+1}) Please enter rock, paper or scissors:`);
+        } while (!posibilities.includes(playerSelection.toLowerCase()));
         computerSelection = computerPlay();
         scores[index] = playRound(playerSelection, computerSelection)
     }
