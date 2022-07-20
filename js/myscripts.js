@@ -49,28 +49,42 @@ function game(){
 
     for (let index = 0; index < 5; index++) {
         do {
-            playerSelection = prompt(`Round(${index+1}) Please enter rock, paper or scissors:`);
+            if(playerSelection){
+                if(!posibilities.includes(playerSelection.toLowerCase())){
+                    playerSelection = prompt(`Round(${index+1}) You made a mistake. Please enter rock, paper or scissors:`);
+                }
+                else{
+                    playerSelection = prompt(`Round(${index+1}) Please enter rock, paper or scissors:`);
+                }
+            }
+            else{
+                playerSelection = prompt(`Round(${index+1}) Please enter rock, paper or scissors:`);
+            }
         } while (!posibilities.includes(playerSelection.toLowerCase()));
         computerSelection = computerPlay();
-        scores[index] = playRound(playerSelection, computerSelection)
-    }
-    for (let index = 0; index < scores.length; index++) {
+        scores[index] = playRound(playerSelection, computerSelection);
+        playerSelection = false;
         if(scores[index] == 2){
             computerScore++;
+            console.log(`The computer wins this round. Beep Beep. Computer:${computerScore} You:${userScore}`);
         }
         else if(scores[index] == 1){
             userScore++;
+            console.log(`This round goes to you! Computer:${computerScore} You:${userScore}`);
+        }
+        else{
+            console.log(`It's a tie. Computer:${computerScore} You:${userScore}`);
         }
     }
     if(computerScore>userScore){
-        return "The computer wins again. Beep Beep.";
+        console.log(`The computer wins the game. Beep Beep. Computer:${computerScore} You:${userScore}`);
     }
     else if(userScore>computerScore){
-        return "You have a mind even greater than the computer!";
+        console.log(`You win! Down with the computers! Computer:${computerScore} You:${userScore}`);
     }
     else{
-        return "It seems it is a stalemate.";
+        console.log(`It's a tie. It seems you have the same level brain as a computer.. unsure if good or bad. Computer:${computerScore} You:${userScore}`);
     }
 }
 
-console.log(game());
+game();
